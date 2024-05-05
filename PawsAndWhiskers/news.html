@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pet News API</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            margin-top: 110px;
+        }
+
+        /* Navbar styles */
+        .navbar {
+
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: #121212;
+            color: #fff;
+            padding: 1rem 1rem;
+            font-size: 1.0rem;
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: absolute;
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100%;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: #fff;
+            margin: 0 10px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            height: 2px;
+            width: 0%;
+            background-color: #fed086;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .bg-dark {
+            background-color: #121212 !important;
+        }
+
+        .navbar-dark .navbar-nav .nav-link {
+            color: #fff;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #fed086;
+        }
+
+        .navbar-button button {
+            background-color: #121212;
+            color: #fff;
+            border: 2px solid #fed086;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            animation: button-animation 1s ease-in-out;
+        }
+
+        .navbar-button button:hover {
+            color: #121212;
+            background-color: #fed086;
+            transition: 1s;
+            font-weight: 600;
+        }
+
+        .card-img-top {
+            height: 230px !important;
+            width: 100%;
+            object-fit: cover;
+        }
+
+
+        .card {
+            background-color: #252525;
+            border-radius: 10px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img-top {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .card-body {
+
+            color: #fff;
+        }
+
+        .btn-primary {
+            width: 30%;
+            font-size: 1rem;
+            background-color: #fed086;
+            border: none;
+            border-radius: 10px;
+            padding: 0.5rem;
+            margin-right: 1rem;
+            transition: all 0.2s ease-in-out;
+            font-weight: 600;
+            color: #121212;
+        }
+
+        .btn-primary:hover {
+            background-color: #fed086;
+            cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        .form-control {
+            border-radius: 6px;
+            background-color: #252525;
+            color: #fff;
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+
+        .form-control::placeholder {
+            color: #a0a0a0;
+        }
+
+        .btn-outline-success {
+            border-color: #fed086;
+            color: #fff;
+            border-radius: 6px;
+            border: 2px solid #fed086;
+            font-weight: 500;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #fed086;
+            color: #121212;
+            border-color: #fed086;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Paws And Whiskers</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="gamingnews.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="displaygame.php">Shop Now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="view.php">Guides</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="displayimage.php">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.php">Contact us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.php">Login</a>
+                    </li>
+                    <!-- Navbar search bar -->
+                    <form class="d-flex mx-auto my-2 my-lg-0" id="searchForm">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                      </form>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-3">
+        <div class="row" id="newsRow">
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js"></script>
+
+    <script>
+        const apiKey = '59eb4d9d369c47c085ac2b417f1aeb41';
+        let apiUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${apiKey}&language=en&img=true`;
+        let page = 1;
+    
+        function getNews() {
+          $.ajax({
+            url: apiUrl + `&page=${page}`,
+            method: "GET",
+            success: function(data) {
+              const newsArticles = data.articles;
+              const newsRow = $('#newsRow');
+    
+              $.each(newsArticles, function(index, value) {
+                const newsCard = `
+                  <div class="col-md-4 mb-3">
+                    <div class="card h-100">
+                      <img src="${value.urlToImage || 'https://via.placeholder.com/300x200?text=No+Image'}" class="card-img-top h-100" alt="${value.title}">
+                      <div class="card-body">
+                        <h5 class="card-title">${value.title}</h5>
+                        <p class="card-text">${value.description}</p>
+                        <a href="${value.url}" class="btn btn-primary">Read More</a>
+                      </div>
+                    </div>
+                  </div>
+                `;
+                newsRow.append(newsCard);
+              });
+    
+              page++;
+            },
+            error: function() {
+              const newsRow = $('#newsRow');
+              newsRow.empty();
+              newsRow.append('<div class="col"><p class="text-center">Failed to load news articles</p></div>');
+            }
+          });
+        }
+    
+        getNews();
+    
+        $(window).scroll(function() {
+          if ($(window).scrollTop() + $(window).height() >= $(document).height() - 300) {
+            getNews();
+          }
+        });
+    
+        $('#searchForm').submit(function(e) {
+          e.preventDefault();
+          const searchQuery = $('input[type="search"]').val().trim();
+          if (searchQuery !== '') {
+            apiUrl = `https://newsapi.org/v2/everything?q=${searchQuery}&sortBy=publishedAt&apiKey=${apiKey}&language=en&img=true`;
+            page = 1;
+            $('#newsRow').empty();
+            getNews();
+          }
+        });
+      </script>
+
+</body>
+
+</html>
